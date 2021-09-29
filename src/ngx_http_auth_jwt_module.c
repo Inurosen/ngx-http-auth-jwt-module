@@ -435,7 +435,7 @@ loadAuthKey(ngx_conf_t *cf, ngx_http_auth_jwt_loc_conf_t* conf) {
 	}
 
 	conf->_auth_jwt_keyfile.data = ngx_palloc(cf->pool, keySize);
-	if(fread(conf->_auth_jwt_keyfile.data, 1, keySize, keyFile) != keySize) {
+	if(fread(conf->_auth_jwt_keyfile.data, 1, keySize, keyFile) != (int)keySize) {
 		ngx_log_error(NGX_LOG_ERR, cf->log, 0, "error reading key file, check the key file");
 		return NGX_ERROR;
 	}
